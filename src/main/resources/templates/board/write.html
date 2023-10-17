@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <header th:replace="common/header"></header>
+    <div th:replace="common/top_menu"></div>
+    <form action="/board/write" method="post">
+        작성자 : <input type="text" name="name" th:value="${session.user_info.name}" readonly>
+        <br><br>
+        제목 : <input type="text" name="title">
+        <br><br><br>
+        <hr>
+        <textarea name="content" id="" cols="30" rows="10">내용</textarea>
+        <button>작성 완료</button>
+    </form>
+</body>
+</html>

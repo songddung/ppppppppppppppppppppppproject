@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    li a {
+        text-decoration: none;
+        
+    }
+
+    .ul {
+        
+        list-style-type: none;
+        width: 100%;
+       margin: 0; 
+    }
+    .board{
+        border: solid black 1px;
+        margin-left: 50px;
+        margin-top: 30px;
+        margin-right: 50px;
+        display: flex;
+        flex-direction: column;
+        height: 43rem;
+        padding-top: 10px;
+        
+
+        
+    }
+    .li{
+        font-size: 1.5rem;
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        width: 100%;
+        margin: 0;
+        
+
+    }
+    .a{
+        display: flex;
+        color: black;
+        text-align: center;
+        align-items: center;
+        width: 100%;
+
+    }
+    .right-button{
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 10px;
+        margin-right: 50px;
+    }
+    .top-line{
+        display: flex;
+        justify-content: space-between;
+        border: solid 1px black;
+        margin-left: 50px;
+        margin-right: 50px;
+        padding: 5px;
+        color: black;
+        background-color: lightgray;
+    }
+    .top-line span{
+        padding-left: 130px;
+        padding-right: 100px;
+
+    }
+    .board-num{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+        /* border-bottom: 1px solid black; */
+    }
+    .board-num div{
+        display: block;
+        border-bottom: 1px solid black;
+        width: 100%;
+        padding-bottom: 20px;
+        margin: 10px 0 10px 0;
+    }
+
+</style>
+
+<body>
+
+    <header th:replace="common/header"></header>
+    <div th:replace="common/top_menu"></div>
+
+    <div class="right-button">
+        <button  th:text="게시글작성" th:onclick="location='/board/write'"></button>
+    </div>
+    <div class="top-line">
+        <span>번호</span>
+        <span>제목</span>
+        <span>글쓴이</span>
+        <span>등록일자</span>
+        <span>조회수</span>
+    </div>
+    <div class="board">
+        <ul class="ul" th:each="board : ${boardList}">
+            <li class="li"> 
+                <a class="a" th:href="@{/board/detail(id=${board.id})}">
+                    <div class="board-num">
+                        <div>[[${board.id}]].</div>
+                        <div>[[${board.title}]]</div>
+                        <div>[[${board.name}]]</div>   
+                        <div>[[${board.creDate}]]</div>
+                        <div>[[${board.view}]]</div>
+                    </div>
+                    <!--/* ([[${lists.size(board.comments)}]]) */-->
+                </a>
+            </li>
+        </ul>
+    </div>
+</body>
+
+</html>

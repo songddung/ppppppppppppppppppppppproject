@@ -1,0 +1,44 @@
+
+<body>
+    <!-- <div th:replace="common/header"></div> -->
+    <header th:replace="common/header"></header>
+    <div th:replace="common/top_menu"></div>
+    <div>
+        <button onclick="abc()">인증메일 전송</button>
+        <form action="/auth/certifi" method="post">
+            <input id="inputField" name="verNum" type="text" maxlength="6" required>
+            <button id="verBtn" disabled>인증확인</button>
+        </form>
+    </div>
+    <div id="error-message"></div>
+    </form>
+</body>
+
+<script>
+    const inputField = document.getElementById("inputField");
+    const errorMessage = document.getElementById("error-message");
+    const btnMagic = document.getElementById("verBtn");
+
+    inputField.addEventListener("input", function () {
+        const inputValue = inputField.value;
+        const numberPattern = /^[0-9]{6}$/;
+        if (numberPattern.test(inputValue)) {
+            errorMessage.textContent = "";
+            btnMagic.disabled = false;
+        } else {
+            errorMessage.textContent = "6자리의 숫자만 입력하세요.";
+            btnMagic.disabled = true;
+
+        }
+    });
+
+    async function abc() {
+        console.log("hi")
+        const random = Math.floor(100000 + Math.random() * 900000);
+        console.log(random);
+        const response = await fetch(`/auth/certifi1?ran=${random}`);
+        const data = await response.text();
+        alert(data);
+    }
+
+</script>

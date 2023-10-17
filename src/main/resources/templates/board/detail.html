@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+
+<style>
+ul {
+    list-style-type: none;
+}
+</style>
+
+
+<body>
+    <header th:replace="common/header"></header>
+    <div th:replace="common/top_menu"></div>
+    <div class="list">
+        <p>
+            번호 :[[ ${board.id} ]]
+        </p>
+
+        <p>
+            작성자 :[[ ${board.user.name} ]]
+        </p>
+        <p>
+            제목 :[[ ${board.title} ]]
+        </p>
+        <p>
+            내용 :[[ ${board.content} ]]
+        </p>
+        <p>
+            추천 :[[ ${board.likeCount} ]]
+        </p>
+    </div>
+
+    <div class="re">
+
+        <button th:text="수정" th:onclick="'location=\'/board/edit?id='+${board.id}+'\''"></button>
+
+        <button th:text="리스트보기" th:onclick="location='/board/list'"></button>
+        <br><br>
+        <button onclick="likeCount()">추천</button>
+        <button onclick="remove()">삭제</button>
+<hr><br>
+        <!--2번 <a href="@{/board/edit(id=${board.id})}">수정</a> -->
+
+        <!--3번 방법 <button onclick="edit()">수정</button> -->
+    </div>
+    <form action="/board/comment" method="post" >
+        <input required type="text" name="content">
+        <input type="hidden" name="boardId" th:value="${board.id}">
+        <button type="submit" th:text="작성"></button>
+    </form>
+
+
+    <ul th:each="comment : ${board.comments}">
+        <li>[[${comment.user.name}]] : [[${comment.content}]] / [[${comment.crDate}]] 
+
+            <!-- 수정 -->
+            <button th:text="수정" th:onclick="'location=\'/board/commentEdit?id='+${comment.id}+'&boardId=' + ${board.id} + '\''">
+            <script>
+            // '\'/board/commentEdit?id=' +  ${}  + '&boardId=' +  ${} + '\''
+                location = '/board/commentEdit?id=100&boardId=100';
+            </script>
+            </button> 
+
+            <!-- 삭제 -->
+            <button th:onclick="'CommentRemove(' + ${comment.id} + ')'" type="button">삭제</button>
+        </li>
+
+    </ul>
+
+
+
+
+
+<!-- 3번방법 스크립트에서 함수만들기
+    <script>
+        function edit(){
+            location='/board/edit?id=[[${board.id}]]';
+        }
+    </script> -->
+    <script>
+
+        //게시글 삭제
+        function remove(){
+            const isOk = confirm("ㄹㅇ?");
+            if(isOk){
+            location='/board/remove?id=[[${board.id}]]';
+            }
+        }
+
+        // 댓글 삭제
+        function CommentRemove(id){
+            const isOk = confirm("ㄹㅇ?")
+        if(isOk){
+                                             //detail번호로 돌아오기
+            location=`/board/comment/remove?id=${id}&boardId=[[${board.id}]]`;
+        }
+        }
+
+
+        // 추천
+        
+    </script>
+</body>
+
+</html>

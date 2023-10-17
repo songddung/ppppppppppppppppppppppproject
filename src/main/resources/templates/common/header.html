@@ -1,0 +1,132 @@
+<header>
+    <div class="title">
+        <a href="/">
+            <h1><b>project</b></h1>
+        </a>
+        <div class="account">
+            <a href="/auth/signin">로그인</a>
+            &nbsp; &nbsp; &nbsp;
+            <a href="/auth/signup">회원가입</a>
+            &nbsp; &nbsp; &nbsp;
+            <a href="/auth/certifi">이메일 인증</a>
+            &nbsp; &nbsp; &nbsp;
+            <button onclick="window.location='/auth/signout'">로그아웃</button>
+            &nbsp; &nbsp; &nbsp;
+            <button id="updateUserInfo">회원정보변경</button>
+        </div>
+        <hr>
+    </div>
+</header>
+
+
+
+<!-- frame -->
+<style>
+    html, body{
+        width: 100%;
+        margin: auto;
+    }
+
+    .title a {
+        text-decoration: none;
+        color: black;
+        
+    }
+
+    .title>a>h1 {
+        text-align: center;
+        font-size: 30px;
+
+    }
+
+    .account {
+        text-align: end;
+        padding-right: 3%;
+    }
+
+    .title{
+        height: 8%;
+        margin-top: -0.1%;
+    }
+    
+    hr{
+        margin: 0;
+    }
+</style>
+
+
+<!-- top bar menu -->
+<style>
+    ul,
+    li {
+        width: fit-content;
+        margin: 10px;
+        padding: 0;
+        list-style: none;
+    }
+
+    a {
+        text-decoration: none;
+        color: black;
+    }
+
+    .top-bar__menu-box-1>ul ul {
+        display: none;
+    }
+
+    .top-bar__menu-box-1>ul>li {
+        display: inline-block;
+    }
+
+    .top-bar__menu-box-1 {
+        text-align: center;
+    }
+
+    .top-bar__menu-box-1>ul>li:hover>ul {
+        display: block;
+        background-color: lightgray;
+        border-radius: 10px;
+        margin-top: 3%;
+    }
+
+    .top-bar__menu-box-1 ul>li:hover>a {
+        background-color: whitesmoke;
+        border-radius: 10px;
+        height: 140px;
+    }
+
+    .num > li {
+        width: 500ox;
+    }
+
+    .top-bar__menu-box-1 ul>li>a {
+        width: auto;
+        font-size: 30px;
+        padding: 8px 100px;
+        align-items: center;
+    }
+
+    :root {
+        width: var(--site-width);
+    }
+
+    .con-min-width {
+        min-width: var(--site-width);
+    }
+
+    .con {
+        width: var(--site-width);
+    }
+
+    .top-bar__menu-box-1 ul {
+        width: auto;
+    }
+
+    .top-bar__menu-box-1>ul>li {
+        position: relative;
+    }
+
+    .top-bar__menu-box-1>ul>li>ul {
+        position: absolute;
+    }
+</style>

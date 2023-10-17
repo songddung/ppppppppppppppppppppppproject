@@ -1,0 +1,28 @@
+<div class="updateUserInfo">
+    <form action="/auth/updateUserInfo" method="post">
+        이름 : <input type="text" name="name" th:value="${user.name}" required>
+        <br>
+        이메일 : <input type="email" name="email" th:value="${user.email}" readonly required>
+        <br>
+        생일 : <input type="date" name="birth" th:value="${user.birth}" required>
+        <br>
+        전화번호 : <input type="text" name="tel" th:value="${user.tel}" required pattern="[0-9]{11}">
+        <br>
+        <button>수정</button>
+    </form>
+</div>
+
+
+
+<style>
+    .signup {
+        width: fit-content;
+        margin: auto;
+        padding-top: 20%;
+    }
+
+    input {
+        width: 250px;
+        padding: 3%;
+    }
+</style>

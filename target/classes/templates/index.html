@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta property="og:title" content="MK">
+    <meta property="og:image" content="달돌.jpg">
+    <meta charset="UTF-8">
+    <title>project</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <header th:replace="common/header"></header>
+    <div th:replace="common/top_menu"></div>
+
+    <div class="clock">
+        <div id="date" class="date"></div>
+        <div id="time" class="time"></div>
+    </div>
+
+
+
+</body>
+
+
+
+<script>
+    document.querySelector('#updateUserInfo').addEventListener('click', (e) => {
+      e.preventDefault();
+      location = `/auth/updateUserInfo`;
+    });
+  </script>
+
+
+
+<!-- frame -->
+<style>
+    html, body{
+        width: 100%;
+        margin: auto;
+    }
+
+    .title a {
+        text-decoration: none;
+        color: black;
+        
+    }
+
+    .title>a>h1 {
+        text-align: center;
+        font-size: 30px;
+        margin-top: -0.15%;
+    }
+
+    .account {
+        text-align: end;
+        padding-right: -1%;
+    }
+
+    .title{
+        height: 8%;
+    }
+</style>
+
+
+<!-- top bar menu -->
+<style>
+    ul,
+    li {
+        width: fit-content;
+        margin: 10px;
+        padding: 0;
+        list-style: none;
+    }
+
+    a {
+        text-decoration: none;
+        color: black;
+    }
+
+    .top-bar__menu-box-1>ul ul {
+        display: none;
+    }
+
+    .top-bar__menu-box-1>ul>li {
+        display: inline-block;
+    }
+
+    .top-bar__menu-box-1 {
+        text-align: center;
+    }
+
+    .top-bar__menu-box-1>ul>li:hover>ul {
+        display: block;
+        background-color: lightgray;
+        border-radius: 10px;
+        margin-top: 3%;
+    }
+
+    .top-bar__menu-box-1 ul>li:hover>a {
+        background-color: whitesmoke;
+        border-radius: 10px;
+        height: 140px;
+    }
+
+    .num > li {
+        width: 500ox;
+    }
+
+    .top-bar__menu-box-1 ul>li>a {
+        width: auto;
+        font-size: 30px;
+        padding: 8px 100px;
+        align-items: center;
+    }
+
+    :root {
+        width: var(--site-width);
+    }
+
+    .con-min-width {
+        min-width: var(--site-width);
+    }
+
+    .con {
+        width: var(--site-width);
+    }
+
+    .top-bar__menu-box-1 ul {
+        width: auto;
+    }
+
+    .top-bar__menu-box-1>ul>li {
+        position: relative;
+    }
+
+    .top-bar__menu-box-1>ul>li>ul {
+        position: absolute;
+    }
+</style>
+
+<!-- time/date -->
+<style>
+    .clock{
+       margin-top: 10%;
+    }
+    #date {
+        font-size: 45px;
+        color: black;
+        width: fit-content;
+        margin: auto;
+    }
+
+    #time {
+        font-size: 100px;
+        color: black;
+        width: fit-content;
+        margin: auto;
+    }
+</style>
+
+
+
+
+<script>
+    function setClock() {
+        var dateInfo = new Date();
+        var hour = modifyNumber(dateInfo.getHours());
+        var min = modifyNumber(dateInfo.getMinutes());
+        var sec = modifyNumber(dateInfo.getSeconds());
+        var year = dateInfo.getFullYear();
+        var month = dateInfo.getMonth() + 1;
+        var date = dateInfo.getDate();
+        document.getElementById("time").innerHTML = hour + ":" + min + ":" + sec;
+        document.getElementById("date").innerHTML = year + "년 " + month + "월 " + date + "일";
+    }
+    function modifyNumber(time) {
+        if (parseInt(time) < 10) {
+            return "0" + time;
+        }
+        else
+            return time;
+    }
+    window.onload = function () {
+        setClock();
+        setInterval(setClock, 1000);
+    }
+</script>

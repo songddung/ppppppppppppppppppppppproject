@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Board</title>
+</head>
+<body>
+    <header th:replace="common/header"></header>
+    <div th:replace="common/top_menu"></div>
+    <h1>Edit Board</h1>
+    <form action="/board/edit" method="post" >
+      작성자: <input type="text" name="id" th:value="${board.id}" readonly>
+      
+        <br><br>
+        제목: <input type="text" name="title" th:value="${board.title}">
+
+        <br><br>
+        내용: <textarea name="content" id="" cols="30" rows="10">[[${board.content}]]</textarea>
+        
+        <input type="hidden" name="boardId" th:value="${board.id}" >
+        <!-- 게시글 번호를 불러오고 히든으로 숨겨줌 프라이머리키를 얻기위해서 -->
+      
+        <button type="submit">Save</button>
+    </form>
+</body>
+</html>

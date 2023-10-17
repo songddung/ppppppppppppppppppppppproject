@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <header th:replace="common/header"></header>
+    <div th:replace="common/top_menu"></div>
+    
+    <nav class="wrap">
+    <div class="game">
+        <button class="tit" onclick="window.location.reload()">추첨</button>
+        <br>
+        <h3 id="ran">??, &nbsp;??, &nbsp;??, &nbsp;??, &nbsp;??, &nbsp;??</h3>
+        <br>
+    </div>
+
+        <div class="rollbutton">
+            <input type="button" value="시작" onclick="start();" />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="button" value="중지" onclick="stop();" />
+        </div>
+    
+</nav>
+</body>
+
+
+<!-- 추첨 돌리기 -->
+<style>
+ .wrap {
+    padding-top: 1%;
+        width: auto;
+        height: 1150px;
+        background-color: gainsboro;
+    }
+
+    .game {
+        width: 1000px;
+        margin: auto;
+    }
+
+    .tit {
+        width: 100%;
+        margin: auto;
+        border: none;
+        background-color: gainsboro;
+        font-size: 100px;
+    }
+
+    h3 {
+        padding-top: 5%;
+        font-size: 80px;
+        text-align: center;
+    }
+
+    .rollbutton {
+        height: 50px;
+        background-color: gainsboro;
+        width: fit-content;
+        margin: auto;
+        border-radius: 5px;
+        margin-top: 3%;
+    }
+
+    .rollbutton>input {
+        width: 150px;
+        height: 40px;
+        border-radius: 5px;
+    }
+
+    .ran {
+        width: 100%;
+        height: 450px;
+        background-color: gainsboro;
+    }
+</style>
+
+
+<!-- frame -->
+<style>
+    html,
+    body {
+        width: 100%;
+        margin: auto;
+    }
+
+    .title a {
+        text-decoration: none;
+        color: black;
+    }
+
+    .title>a>h1 {
+        text-align: center;
+    }
+
+    .account {
+        text-align: end;
+    }
+</style>
+
+<!-- top bar menu -->
+<style>
+    ul,
+    li {
+        width: fit-content;
+        margin: 10px;
+        padding: 0;
+        list-style: none;
+    }
+
+    a {
+        text-decoration: none;
+        color: black;
+    }
+    
+    .top-bar__menu-box-1>ul ul {
+        display: none;
+    }
+
+    .top-bar__menu-box-1>ul>li {
+        display: inline-block;
+    }
+
+    .top-bar__menu-box-1 {
+        text-align: center;
+    }
+
+    .top-bar__menu-box-1>ul>li:hover>ul {
+        display: block;
+        background-color: lightgray;
+        border-radius: 10px;
+        margin-top: 3%;
+    }
+
+    .top-bar__menu-box-1 ul>li:hover>a {
+        background-color: whitesmoke;
+        border-radius: 10px;
+        height: 140px;
+    }
+
+    .num>li {
+        width: 500ox;
+    }
+
+    .top-bar__menu-box-1 ul>li>a {
+        width: auto;
+        font-size: 30px;
+        padding: 8px 100px;
+        align-items: center;
+    }
+
+    :root {
+        width: var(--site-width);
+    }
+
+    .con-min-width {
+        min-width: var(--site-width);
+    }
+
+    .con {
+        width: var(--site-width);
+    }
+
+    .top-bar__menu-box-1 ul {
+        width: auto;
+    }
+
+    .top-bar__menu-box-1>ul>li {
+        position: relative;
+    }
+
+    .top-bar__menu-box-1>ul>li>ul {
+        position: absolute;
+    }
+</style>
+
+
+    <script>
+        let isStart = false;
+    
+        function time() {
+            const rept = [];
+            while (rept.length < 1) {
+                const selected = [];
+                while (selected.length < 6) {
+                    const num = parseInt(Math.random() * 45) + 1;
+                    if (selected.indexOf(num) == -1) {
+                        selected.push(num);
+                        selected.sort((a, b) => a - b)
+                    }
+                }
+                console.log(selected)
+    
+                let hasNum = false;
+                for (const lotto of rept) {
+                    if (lotto == selected.toString()) {
+                        hasNum = true;
+                        break;
+                    }
+                }
+                if (!hasNum) rept.push(selected);
+            }
+            console.log(rept)
+            document.getElementById("ran").innerHTML = rept
+        }
+    
+        var roll = null;
+    
+        function start() {
+            if(!isStart) {
+                isStart = true;
+                time();
+                roll = setInterval(time, 10)
+            }
+        }
+    
+        function stop() {
+            if (roll != null) {
+                clearInterval(roll);
+                isStart = false;
+            }
+        }
+    
+    </script>
